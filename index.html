@@ -47,19 +47,56 @@
 
 
             <section>
-                <h3>Links to Google forms</h3>
+                <h3>How to involved with the RCN</h3>
                 <hr>
                 <ul>
-                    <li>Sign up for the RCN using <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEi057QAcAfiRDKt95CylO8bqQE5Jm1s2Rkw137Hje3lvqfg/viewform">this form</a></li>
-                    <li><a href="#">Form 2</a></li>
-                    <li><a href="#">Form 3</a></li>
+                    <li>Sign up for the RCN using <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEi057QAcAfiRDKt95CylO8bqQE5Jm1s2Rkw137Hje3lvqfg/viewform">this Google form.</a> 
+                        Membership provides access to the RCN mailing list, Google Calendar, Slack workspace, and Google Drive. </li>
+                    <li>Nominations & Suggestions 
+                        <ul>
+                            <li>Nominate yourself or a collaborator to give an RCN Colloquium <a href="https://docs.google.com/forms/d/e/1FAIpQLSca51ngoFeF5X9EZbTintxS3jKpfOYXPdjR_rjT86MLb-CC1A/viewform?usp=sf_link">here</a></li>
+                            <li>Suggest a topic for a future RCN Workshop <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdlAf-hi9BQWcLHL-PpuFTYZVTdsPbMiIw3Edjc1RiAaXQvQ/viewform?usp=sf_link">here</a></li>
+                        </ul>
                 </ul>
             </section>
 
             <section>
-                <h3>Section 3</h3>
+                <h3>How to contribute to the RCN Website</h3>
                 <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+                <p>This site follows the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow workflow</a></p>
+
+                <p>
+                    <strong>Branch Structure</strong> 
+                    <ul>
+                        <li><em>main</em> -- Release branch from which the current, displayed website is generated</li>
+                        <li><em>develop</em> -- Development branch where updates are aggregated between releases</li>
+                        <li><em>feature_branch_name</em> - Feature branches should be forked off of develop, and should be named with a human readable intuitive name. Delete feature branches once merged into develop and work in them is complete.</li>
+                    </ul>
+                    <hr>
+                    <strong>Developers</strong> 
+                    We recommend that developers use the following workflow: <br>
+                    First, set up your working environment
+                    <ol>
+                        <li>Create a fork of the repository into your github account by clicking the Fork icon on the right top corner of the main github EPRV-RCN/RVdata repo page.</li>
+                        <li>Clone your fork to your local computer: <code>git clone git@github.com:YourGithubID/RVdata.git</code></li>
+                        <li>Setup a new <em>remote</em> named upstream that points to the project level repository: <code>git remote add upstream git@github.com:EPRV-RCN/RVdata.git</code></li>
+                    </ol>
+
+                    To add a new feature or bugfix to the website:
+                    <ol>
+                        <li>Create a feature branch off of develop for your new work. Bugfix branches should prefix with <em>bugfix</em></li>
+                        <code>git checkout -b feature_branch_name</code>
+                        <li>Make your changes, commit them with a useful commit message, and push to your fork.</li>
+                        <code>git commit -m "Description of committed changes"</code>  <br>
+                        <code>git push origin feature_branch_name</code>
+                        <li>Setup a pull request from your feature branch into the project level develop branch. Use the Pull requests menu item on the top bar of github.com. 
+                            Be sure that the pull request points into the EPRV-RCN.github.io <em><strong>develop</strong></em> branch. This will trigger a review request.</li>
+                        <li>Iterate with reviewers as needed, using the pull request to capture discussion comments. Once the reviewers approve the pull request, the original 
+                            author is responsible for merging. <strong>If you encounter a merge conflict, ask for help. Do not proceed!</strong></li>
+                    </ol>
+
+
+                </p>
             </section>
 
             <section>
