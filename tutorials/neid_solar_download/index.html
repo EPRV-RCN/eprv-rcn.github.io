@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="/css/main.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NEID Solar Data Download</title>
+        <script src="/js/copy.js"></script>
+    </head>
+    <body>
+
+        <!-- Navigation Menu -->
+        <nav>
+            <a href="/">Home</a>
+            <a href="/presentations">Presentations</a>
+            <a href="/events">Events</a>
+            <a href="/visuals">Visual Resources</a>
+            <a href="/tutorials">Tutorials</a>
+            <a href="/conduct">Code of Conduct</a>
+        </nav>
+
+        <main>
+            <header>
+            </header>
+
+            <h2>How to download NEID Solar data from the NEID Atrchives at NExScI</h2>
+            <hr>
+            <p>This <a href="https://github.com/almoulla/eprv6_saas_splinter/blob/main/eprv6_saas_splinter_1_tutorial_neid.ipynb">tutorial</a> was originally developed for the Sun-as-a-Star Splinter at the Extremely
+                Precise Radial Velocities Sixth Workshop (EPRV6) in June 2024.<br>
+                Main contrutors: Khaled Al Moulla and Ryan Rubenzhal.</p>
+
+            <p>This tutorial uses the NEID Archive Python API. To install it use:</p>
+            <pre>
+                <button title="copy">&#x1F4CB;</button>
+                <code>pip install git+https://github.com/Caltech-IPAC/pyNEID.git</code>
+            </pre>
+
+            <p><br>Import packages and set up output directory</p>
+<pre>
+                <button title="copy">&#x1F4CB;</button><code>from astropy.io import fits
+from glob import glob
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+from pyneid.neid import neid
+
+output_directory = 'sun_neid_l2/'
+os.makedirs(output_directory, exist_ok=True)</code>
+</pre>
+
+<p><br>Define range of time and basic parameter, then query the NEID files and download them.
+For this tutorial we will be downloading the level 2 data (the RV level) as FITS files.</p>
+<pre>
+                <button title="copy">&#x1F4CB;</button><code>date_min = '2021-01-14 00:00:00'
+date_max = '2021-01-14 23:59:59'
+
+param = dict()
+param['datalevel'] = 'solarl2'
+param['datetime' ] = date_min + '/' + date_max
+
+# Query
+Neid.query_criteria(param, format='csv', outpath=output_directory+'temp.tbl')
+# Download L2 files
+Neid.download(output_directory+'temp.tbl', 'solarl2', 'csv', output_directory, start_row=0, end_row=3)
+# Delete temporary file
+os.remove(output_directory+'temp.tbl')</code>
+</pre>
+<p><br>To extract the relevant information, loop over the files and extract the needed data from 
+the headers.</p>
+<pre>
+                <button title="copy">&#x1F4CB;</button><code>files = glob(output_directory+'**/*.fits', recursive=True)
+Nfile = len(files)
+
+# Empty arrays for header variables
+time_val = np.empty(Nfile)
+vrad_val = np.empty(Nfile)
+vrad_err = np.empty(Nfile)
+
+# Loop files
+for i in range(Nfile):
+    # Open FITS file
+    hdul = fits.open(files[i])
+
+    # Extract header variables
+    header = hdul[12].header
+    time_val[i] = header['CCFJDMOD']
+    vrad_val[i] = header['CCFRVMOD']
+    vrad_err[i] = header['DVRMSMOD']
+
+    # Close FITS file
+    hdul.close()</code>
+</pre>
+<p><br>Example plot of the extracted data.</p>
+<pre>
+                <button title="copy">&#x1F4CB;</button><code>plt.figure()
+plt.errorbar(time_val, vrad_val, vrad_err, fmt='.', color='k', ecolor='r')
+plt.xlabel('BJD [d]')
+plt.ylabel('RV [km/s]')
+plt.show()</code>
+</pre>
+<img src="data_plot.png" alt="NEID Solar Plot" style="width:100%;">
+        </main>
+
+        <footer>
+        </footer>
+
+    </body>
+</html>
+
