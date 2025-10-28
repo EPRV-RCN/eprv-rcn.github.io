@@ -17,66 +17,25 @@
         <h2>Professional Development Resources</h2>
       </header>
 
-<section>
-  <h3>Table of Universities with PhD programs and at least one faculty member focused on exoplanets</h3>
-  <hr>
+        <section>
+            <h3>Table of Universities with PhD programs and at least one faculty member focused on exoplanets</h3>
+            <hr>
 
-  <p>
-    This table is a best-effort resource maintained by the exoplanet community. Anyone is welcome to leave comments on the page suggesting updates using 
-    <a href="https://docs.google.com/spreadsheets/d/1Nbuc9yzjK9KooiFb73b6KH5UwWFcSd-A8soz2pq0Ffg/edit?usp=sharing" target="_blank">this link</a> to help keep the listings 
-    up to date and capture recent hires / faculty swaps!
-  </p>
+            <p>
+                This table is a best-effort resource maintained by the exoplanet community. Anyone is welcome to leave comments on the page suggesting updates using 
+                <a href="https://docs.google.com/spreadsheets/d/1Nbuc9yzjK9KooiFb73b6KH5UwWFcSd-A8soz2pq0Ffg/edit?usp=sharing" target="_blank"> this link</a> to help keep the listings 
+                up to date and capture recent hires / faculty swaps!
+            </p>
 
-  <div style="overflow-x:auto;">
-    <table id="phdTable" style="width:100%; border-collapse:collapse;">
-      <thead></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-
-  <script>
-    async function loadSheet() {
-      const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSr_yKCbWwFRByVRuuBGyWBxrMvmCUAbtvXVxxFmZsygJN6Jz_aVrWIr9409fjHpf5r0YJ5uSlmoMny/pub?gid=0&single=true&output=csv';
-      const response = await fetch(sheetUrl);
-      const data = await response.text();
-
-      // Parse CSV
-      const rows = data.split('\n').map(r => r.split(','));
-      const table = document.getElementById('phdTable');
-      const thead = table.querySelector('thead');
-      const tbody = table.querySelector('tbody');
-
-      // Header row
-      const headerRow = document.createElement('tr');
-      rows[0].forEach(h => {
-        const th = document.createElement('th');
-        th.textContent = h.trim();
-        th.style.border = '1px solid #ccc';
-        th.style.padding = '8px';
-        th.style.background = '#f5f5f5';
-        headerRow.appendChild(th);
-      });
-      thead.appendChild(headerRow);
-
-      // Data rows
-      rows.slice(1).forEach(r => {
-        if (r.length > 1) {
-          const tr = document.createElement('tr');
-          r.forEach(c => {
-            const td = document.createElement('td');
-            td.textContent = c.trim();
-            td.style.border = '1px solid #ccc';
-            td.style.padding = '8px';
-            tr.appendChild(td);
-          });
-          tbody.appendChild(tr);
-        }
-      });
-    }
-
-    loadSheet();
-  </script>
-</section>
+            <iframe 
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSr_yKCbWwFRByVRuuBGyWBxrMvmCUAbtvXVxxFmZsygJN6Jz_aVrWIr9409fjHpf5r0YJ5uSlmoMny/pubhtml?gid=0&single=true" 
+                width="100%" 
+                height="600" 
+                frameborder="0" 
+                scrolling="yes">
+            </iframe>
+            
+        </section>
 
         <section>
             <h3>Links to </h3>
@@ -87,6 +46,7 @@
             </p>
 
         </section>
+
 
     </main>
 

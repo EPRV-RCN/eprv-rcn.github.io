@@ -16,7 +16,8 @@ a:hover {
 }
 
 main {
-  max-width: 900px;
+  width: 90%;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
 }
