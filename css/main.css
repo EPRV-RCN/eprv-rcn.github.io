@@ -30,6 +30,16 @@ section {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
+.section-banner {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: block;
+  margin-bottom: 1.5rem;
+  object-fit: cover; /* Ensures the image scales nicely if you set a fixed height */
+}
+
 h2 {
   margin-bottom: 1rem;
   font-size: 1.5rem;
