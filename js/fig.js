@@ -12,7 +12,6 @@ const model = {
     data: null,
     filterText: '',
     filter: [],
-    statusFilter: 'all',
     loaded: false,
     error: '',
 };
@@ -52,59 +51,6 @@ function findById(list, id) {
     return list.find(item => item.id === id);
 }
 
-// --- view functions ---
-function statusFilterView() {
-    function all_cb(e) {
-        e.preventDefault();
-        model.statusFilter = 'all';
-        m.route.set('');
-    }
-
-    function complete_cb(e) {
-        e.preventDefault();
-        model.statusFilter = 'complete';
-        m.route.set('');
-    }
-
-    function in_progress_cb(e) {
-        e.preventDefault();
-        model.statusFilter = 'in_progress';
-        m.route.set('');
-    }
-
-    const all = m('a', {href: '#', onclick: all_cb}, 'All Projects');
-    const complete = m('a', {href: '#', onclick: complete_cb}, 'Complete Projects');
-    const in_progress = m('a', {href: '#', onclick: in_progress_cb}, 'Projects In Progress');
-
-    if (model.statusFilter === 'complete') 
-        complete.attrs['class'] = 'active';
-    else if (model.statusFilter === 'in_progress') 
-        in_progress.attrs['class'] = 'active';
-    else
-        all.attrs['class'] = 'active';
-    
-
-    const lst = m('ul.status-nav', {}, [
-        m('li', {}, all),
-        m('li', {}, complete),
-        m('li', {}, in_progress),
-    ]);
-
-    return m('div#status-filter', {}, lst);
-}
-
-function figureView(project, featured=false) {
-    let img = project.thumbnail_url;
-    if (featured)
-        img = project.featured_thumbnail_url
-
-    const link =  m('a', {href: `#/project/${project.id}`}, [
-        m('img', {src: img}, null),
-        m('figcaption', {}, `${project.title}`),
-    ]);
-    //return m('figure', {}, link);
-    return m('div.featured-content', {}, m('figure', {}, link));
-}
 
 function figureView(fig) {
     return m('details', [
@@ -121,41 +67,13 @@ function figureView(fig) {
                    m('h3', 'Description'),
                    m('p', fig.description),
                    m('hr'),
-                   m('p', {}, m('a', {href: '#'}, 'Link')),
+                   m('p', {}, m('a', {href: `/figure-uploads/${fig.filename}`}, `${fig.filename}`)),
 
                ]),
 
            ]);
 }
 
-function featuredProjectView(project) {
-    const img = project.featured_thumbnail_url;
-
-    return m("div.featured-project", [
-        m('a', {href: `#/project/${project.id}`}, m("img", { src: img, alt: "Featured Project Image" })),
-        m("div.project-content", [
-          //m('h3', 'Featured Project'),
-          m("h2.project-title", project.title),
-          m("p.project-summary", project.summary),
-          m("a.learn-more", { href: `#/project/${project.id}` }, "Learn more →")
-        ])
-      ]);
-}
-
-
-function mainView(projects) {
-    if (projects.length < 1)
-        return null;
-
-    const lst = [];
-    for(const project of projects) {
-        if (project.featured !== true) {
-            const fig = figureView(project);
-            lst.push(fig);
-        }
-    }
-    return m('section#main', {}, lst);
-}
 
 // case-insinsitve includes
 function incl(str1, str2) {
@@ -170,6 +88,8 @@ function filterOnKeywords(figures) {
             if (incl(figure.author, kw))
                 return true;
             if (incl(figure.description, kw))
+                return true;
+            if (incl(figure.filename, kw))
                 return true;
 
             for (const tag of figure.tags) {
@@ -186,18 +106,6 @@ function filterOnKeywords(figures) {
     }
 
     return figures.filter(fltr);
-}
-
-function filterOnStatus(projects) {
-    if (model.statusFilter === 'all')
-        return projects;
-
-    else if (model.statusFilter === 'complete')
-        return projects.filter(project => project.complete)
-    else
-        return projects.filter(project => !project.complete)
-
-
 }
 
 function keywordFilterView() {
@@ -244,25 +152,9 @@ function keywordFilterView() {
 
     const lst= [
         m('span', {style: {'margin-right': '5px'}}, 'Filter projects by keywords:'),
-        //m('input', {type: 'text', size: 30, value: model.filterText, placeholder: 'Enter comma seprated keywords', oninput: txt_cb, onkeydown: kd_cb}, null),
         m('input', {type: 'text', size: 30, value: model.filterText, placeholder: 'Enter comma seprated keywords', oninput: master_cb}, null),
-        //m('button.filter-button', {style: {margin: '5px'}, onclick: btn_cb}, 'Filter'),
-        //m('a.filter-button', {href: '#', style: {margin: '5px'}, onclick: btn_cb}, 'Filter'),
-        //m('a', {href: '#', onclick: clear_cb}, m('span', {style: {color: '#3956c2', 'font-style': 'italic'}},'Clear filter')),
     ];
     return m('div#keyword-filter', {}, lst);
-}
-
-function featuredView(project) {
-    const figure = figureView(project, true);
-
-    const lst =  [
-        m('h4', {}, 'Featured Project'),
-        figure,
-        m('p#summary', {}, `${project.summary}`),
-        m('a', {href: `#/project/${project.id}`}, 'Learn more'),
-    ];
-    return m('section#featured', {}, lst);
 }
 
 function init() {
@@ -386,6 +278,8 @@ function homeView() {
             
 }
 
+// generic view that turns a js list
+// into an html list.
 function listView(lst) {
     const l = [];
     for (const item of lst) {
@@ -395,55 +289,6 @@ function listView(lst) {
 }
 
 function detailView() {
-    if (model.error) {
-        return m("div", model.error);
-    }
-    if (!model.loaded) {
-        return m("div.loader");
-    }
-
-    const id = parseInt(m.route.param("id"));
-
-    const prj = findById(model.data, id);
-
-    function cb(e) {
-        e.preventDefault();
-        window.history.back();
-    }
-
-    return m("div", [
-        //m("p", `id is: ${id}`),
-        m("a", {href: '#', onclick: cb}, "Back"),
-        //m("p", `Name is: ${prj.name}`),
-        //m("p", m('strong', `${prj.caption}`)),
-        //m("p", m('a', {href: `${prj.image_url}`}, 'link')),
-        //m("p", m('img', {src: `${prj.image_url}`}, null)),
-
-        m('h3', {}, prj.title),
-        m("p", m('a', {href: '#', onclick: cb}, m('img', {src: `${prj.image_url}`}, null))),
-        m('h4', {}, 'Summary'),
-        m('p', {}, prj.summary),
-        m('h4', {}, 'Description'),
-        m("p", `${prj.description}`),
-        m('h4', {}, 'Water Topics'),
-        listView(prj.water_topics),
-        m('h4', {}, 'Basins'),
-        listView(prj.basins),
-        m('h4', {}, 'NASA Earth Observation'),
-        listView(prj.nasa_eo.split(',')),
-        //m('p', {style: {'font-size': '16px'}}, prj.nasa_eo),
-        m('h4', {}, 'Partners'),
-        listView(prj.partners.split(',')),
-        m('h4', {}, 'Leads'),
-        listView(prj.leads.split(',')),
-        m('h4', {}, 'Impact Statement'),
-        m('p', {}, prj.impact_statement),
-        //m('div', {}, prj.nasa_eo),
-        m("a", {href: '#', onclick: cb}, "Back"),
-  ]);
-}
-
-function detailView2() {
     if (model.error) {
         return m("div", model.error);
     }
@@ -517,7 +362,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   m.route(document.getElementById("fig"), "/", {
     "/": { view: homeView, oninit: init},
-    "/project/:id": { view: detailView2, oninit: init},
+    "/project/:id": { view: detailView, oninit: init},
   });
 });
 
