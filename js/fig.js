@@ -12,6 +12,7 @@ const model = {
     data: null,
     filterText: '',
     filter: [],
+    openStates: {},
     loaded: false,
     error: '',
 };
@@ -53,7 +54,7 @@ function findById(list, id) {
 
 
 function figureView(fig) {
-    return m('details', [
+    return m('details', {open: model.openStates[fig.id] || false, ontoggle: e => {model.openStates[fig.id] = e.target.open}}, [
                m('summary', fig.title),
                m('section', [
                    m('h3', 'Author'),
