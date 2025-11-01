@@ -1,5 +1,5 @@
 
-const PAG_MAX = 1;
+const PAG_MAX = 5;
 
 // Number of pages surrounding current page to display in
 // pagination navigation
@@ -67,7 +67,9 @@ function figureView(fig) {
                    m('h3', 'Description'),
                    m('p', fig.description),
                    m('hr'),
-                   m('p', {}, m('a', {href: `/figure-uploads/${fig.filename}`}, `${fig.filename}`)),
+                   //m('p', {}, m('a', {href: `/figure-uploads/${fig.filename}`}, `${fig.filename}`)),
+                   m('p', {}, m('a', {href: `#/figure/${fig.id}`}, 'View →')),
+
 
                ]),
 
@@ -151,7 +153,7 @@ function keywordFilterView() {
     }
 
     const lst= [
-        m('span', {style: {'margin-right': '5px'}}, 'Filter projects by keywords:'),
+        m('span', {style: {'margin-right': '5px'}}, 'Filter by keywords:'),
         m('input', {type: 'text', size: 30, value: model.filterText, placeholder: 'Enter comma seprated keywords', oninput: master_cb}, null),
     ];
     return m('div#keyword-filter', {}, lst);
@@ -188,7 +190,7 @@ function paginationView(projects, current_page) {
     const num_pages = Math.ceil(projects.length/PAG_MAX);
     
     if (num_pages < 2)
-        return m('section#project-nav', {class: 'pagination'}, null);
+        return m('section#figure-nav', {class: 'pagination'}, null);
 
     let previous_page = current_page - 1;
     let next_page = current_page + 1;
@@ -219,7 +221,7 @@ function paginationView(projects, current_page) {
 
     lst.push(m('li', {}, m('a', next_attr, 'Next »')));
 
-    return m('section#project-nav', {class: 'pagination'}, 
+    return m('section#figure-nav', {class: 'pagination'}, 
                m('ul', {}, lst));
 }
 
@@ -267,12 +269,17 @@ function homeView() {
     //return m('h1', 'hello!');
 
     const filteredFigures = filterOnKeywords(model.data);
+    const start = PAG_MAX*(current_page - 1);
+    const end = PAG_MAX*current_page;
+    const paginatedFigures = filteredFigures.slice(start, end);
 
-    const figures = filteredFigures.map(figureView);
+    //const figures = filteredFigures.map(figureView);
+    const figures = paginatedFigures.map(figureView);
 
     return [
         keywordFilterView(),
         m('div', {}, figures),
+        paginationView(filteredFigures, current_page),
     ];
     //return figureView(model.data[0]);
             
@@ -298,62 +305,36 @@ function detailView() {
 
     const id = parseInt(m.route.param("id"));
 
-    const prj = findById(model.data, id);
+    const fig = findById(model.data, id);
 
     function cb(e) {
         e.preventDefault();
         window.history.back();
     }
 
+
+  const st = {};
+
   return m("div.container", [
-    m('header', m('h2', {style: {'margin-top': '0px'}}, prj.title)),
+    //m('header', m('h2', {style: {'margin-top': '0px'}}, fig.title)),
     m("a.back-button", {href: '#', onclick: cb}, "← Back"),
 
-    prj.image_url && m("div.image-container", [
-      m("img", { src: prj.image_url, alt: "Project Image", onclick: cb})
+    fig.filename && m("div.image-container", [
+      m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure", style: st, onclick: cb})
+      //m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure", style: st})
     ]),
 
-    prj.summary && m("section.prj", [
-      m("h2", "Summary"),
-      m("p", prj.summary)
-    ]),
-
-    prj.description && m("section.prj", [
+    /*
+    fig.description && m("section.fig", [
       m("h2", "Description"),
-      m("p", prj.description)
+      m("p", fig.description)
     ]),
+    */
 
-    prj.water_topics && prj.water_topics.length && m("section.prj", [
-      m("h2", "Water Topics"),
-      m("ul", prj.water_topics.map(topic => m("li", topic)))
-    ]),
-
-    prj.basins && prj.basins.length && m("section.prj", [
-      m("h2", "Basins"),
-      m("ul", prj.basins.map(basin => m("li", basin)))
-    ]),
-
-    prj.nasa_eo && prj.nasa_eo.length && m("section.prj", [
-      m("h2", "NASA Earth Observation"),
-      m("ul", prj.nasa_eo.split(',').map(obs => m("li", obs)))
-    ]),
-
-    prj.partners && prj.partners.length && m("section.prj", [
-      m("h2", "Partners"),
-      m("ul", prj.partners.split(',').map(partner => m("li", partner)))
-    ]),
-
-    prj.leads && prj.leads.length && m("section.prj", [
-      m("h2", "Leads"),
-      m("ul", prj.leads.split(',').map(lead => m("li", lead)))
-    ]),
-
-    prj.impact_statement && m("section.prj", [
-      m("h2", "Impact Statement"),
-      m("p", prj.impact_statement)
-    ]),
     m("a.back-button", {href: '#', onclick: cb}, "← Back"),
   ]);
+
+    //return m('div', 'detail view');
 }
 
 
@@ -362,7 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   m.route(document.getElementById("fig"), "/", {
     "/": { view: homeView, oninit: init},
-    "/project/:id": { view: detailView, oninit: init},
+    "/figure/:id": { view: detailView, oninit: init},
   });
 });
 
