@@ -5,7 +5,7 @@
     "author": "John Smith",
     "tags": ["welcome", "EPRV", "community"],
     "description": "A banner image introducing the Extreme Precision Radial Velocity Research Coordination Network, highlighting its NASA sponsorship and collaborative goals.",
-    "filename": "kittens-lg.jpg"
+    "image_file": "kittens-lg.jpg"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "author": "Alicia Perez",
     "tags": ["instrumentation", "stability", "calibration"],
     "description": "A plot comparing long-term radial velocity stability across multiple EPRV spectrographs used in current exoplanet surveys.",
-    "filename": "kittens-md.jpg"
+    "image_file": "kittens-md.jpg"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "author": "Michael Liu",
     "tags": ["radial_velocity", "data_analysis", "tutorial"],
     "description": "An animation demonstrating how precise RV signals are extracted from stellar spectra over time.",
-    "filename": "kittens-sm.jpg"
+    "image_file": "kittens-sm.jpg"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "author": "Jane Anderson",
     "tags": ["simulation", "earth_analog", "mass_measurement"],
     "description": "A simulation showing how small-amplitude radial velocity signals from Earth-like planets can be identified amid stellar noise.",
-    "filename": "kittens-xs.jpg"
+    "image_file": "kittens-xs.jpg"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "author": "Carlos Nguyen",
     "tags": ["network", "collaboration", "map"],
     "description": "An interactive visualization showing the geographic distribution of participating institutions within the EPRV RCN.",
-    "filename": "eprv_collaboration_map.png"
+    "image_file": "eprv_collaboration_map.png"
   },
   {
     "id": 6,
@@ -45,7 +45,9 @@
     "author": "Kimberly Roberts",
     "tags": ["pipeline", "calibration", "EPRV"],
     "description": "A schematic showing the calibration process for achieving cm/s precision in radial velocity measurements.",
-    "filename": "pipeline.jpg"
+    "image_file": "",
+    "video_url": "",
+    "mp4_file": "sample.mp4"
   },
   {
     "id": 7,
@@ -53,7 +55,7 @@
     "author": "David Thompson",
     "tags": ["workshop", "community", "EPRV"],
     "description": "Highlights and key findings from the latest EPRV RCN community workshop on advancing precision in exoplanet detection.",
-    "filename": "",
+    "image_file": "",
     "video_url": "https://www.youtube.com/embed/Mj19KE_HV1E?si=qUGZDBDLg1JA1YJY"
   }
 ]

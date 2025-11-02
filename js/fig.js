@@ -68,7 +68,7 @@ function figureView(fig) {
                    m('h3', 'Description'),
                    m('p', fig.description),
                    m('hr'),
-                   //m('p', {}, m('a', {href: `/figure-uploads/${fig.filename}`}, `${fig.filename}`)),
+                   //m('p', {}, m('a', {href: `/figure-uploads/${fig.image_file}`}, `${fig.image_file}`)),
                    m('p', {}, m('a', {href: `#/figure/${fig.id}`}, 'View →')),
 
 
@@ -92,7 +92,7 @@ function filterOnKeywords(figures) {
                 return true;
             if (incl(figure.description, kw))
                 return true;
-            if (incl(figure.filename, kw))
+            if (incl(figure.image_file, kw))
                 return true;
 
             for (const tag of figure.tags) {
@@ -310,12 +310,12 @@ function listView(lst) {
 function imageView(fig) {
     return m("div.image-container", [
         m('div', {style: {'text-align': 'center', 'color': 'gray'}}, m('em', '(Click the image below to view raw file in a new tab)')),
-        m('a', {href: `/figure-uploads/${fig.filename}`, target: '_blank'}, 
-            m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure"}))
+        m('a', {href: `/figure-uploads/${fig.image_file}`, target: '_blank'}, 
+            m("img", { src: `/figure-uploads/${fig.image_file}`, alt: "Figure"}))
     ])
 }
 
-function videoView(fig) {
+function embedView(fig) {
     const att = {
         id: 'videoPlayer',
         width: '560',
@@ -328,6 +328,25 @@ function videoView(fig) {
     };
 
     return m('iframe', att);
+}
+
+function mp4View(fig) {
+    const st = {
+        width: "100%",
+        height: "auto",
+        display: "block",
+    }
+
+    const att = {
+        autoplay: true,
+        loop: true,
+        muted: true,
+        playsinline: true,
+        style: st,
+    };
+
+    return m('video', att, 
+               m('source', {src: `/figures/${fig.mp4_file}`, type: 'video/mp4'}));
 }
 
 function detailView() {
@@ -348,11 +367,15 @@ function detailView() {
     }
 
     let vdom = m('div', 'No content');
-    if ('filename' in fig && fig.filename) {
+
+    if ('image_file' in fig && fig.image_file) {
         vdom = imageView(fig);
     }
     else if ('video_url' in fig && fig.video_url) {
-        vdom = videoView(fig);
+        vdom = embedView(fig);
+    }
+    else if ('mp4_file' in fig && fig.mp4_file) {
+        vdom = mp4View(fig);
     }
 
 
