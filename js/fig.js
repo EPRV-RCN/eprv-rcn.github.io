@@ -130,7 +130,6 @@ function keywordFilterView() {
                             .filter(word => word.length > 0);
 
         m.route.set('');
-        console.log(model);
 
     }
 
@@ -150,7 +149,6 @@ function keywordFilterView() {
                             .filter(word => word.length > 0);
 
         m.route.set('');
-        console.log(model);
     }
 
     const lst= [
@@ -278,6 +276,7 @@ function homeView() {
     const figures = paginatedFigures.map(figureView);
 
     return [
+        m('h2', {style: {'text-align': 'center', 'margin-bottom': '50px'}}, 'Figures and Animations'),
         keywordFilterView(),
         m('div', {}, figures),
         paginationView(filteredFigures, current_page),
@@ -309,9 +308,26 @@ function listView(lst) {
 */ 
 
 function imageView(fig) {
+    return m("div.image-container", [
+        m('div', {style: {'text-align': 'center', 'color': 'gray'}}, m('em', '(Click the image below to view raw file in a new tab)')),
+        m('a', {href: `/figure-uploads/${fig.filename}`, target: '_blank'}, 
+            m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure"}))
+    ])
 }
 
 function videoView(fig) {
+    const att = {
+        id: 'videoPlayer',
+        width: '560',
+        height: '315',
+        src: `${fig.video_url}`,
+        //src: `https://www.youtube.com/embed/Mj19KE_HV1E?si=qUGZDBDLg1JA1YJY`,
+        frameborder: '0',
+        allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+        allowfullscreen: true
+    };
+
+    return m('iframe', att);
 }
 
 function detailView() {
@@ -331,32 +347,26 @@ function detailView() {
         window.history.back();
     }
 
+    let vdom = m('div', 'No content');
+    if ('filename' in fig && fig.filename) {
+        vdom = imageView(fig);
+    }
+    else if ('video_url' in fig && fig.video_url) {
+        vdom = videoView(fig);
+    }
 
-  const st = {};
 
-  return m("div.container", [
-    //m('header', m('h2', {style: {'margin-top': '0px'}}, fig.title)),
-    m("a.back-button", {href: '#', onclick: cb}, "← Back"),
 
-    fig.filename && m("div.image-container", [
-      m('a', {href: `/figure-uploads/${fig.filename}`, target: '_blank'}, 
-      //m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure", style: st, onclick: cb}))
-      m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure", style: st, onclick: null}))
-      //m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure", style: st})
-    ]),
 
-    /*
-    fig.description && m("section.fig", [
-      m("h2", "Description"),
-      m("p", fig.description)
-    ]),
-    */
+    return m("div.container", [
+        m('div', m("a.back-button", {href: '#', onclick: cb}, "← Back")),
+        m('h3', {style: {'text-align': 'center', 'margin-bottom': '50px'}}, `${fig.title}`),
+        vdom,
+        //m('div', m("a.back-button", {href: '#', onclick: cb}, "← Back")),
+        ]);
 
-    m("a.back-button", {href: '#', onclick: cb}, "← Back"),
-  ]);
-
-    //return m('div', 'detail view');
-}
+        //return m('div', 'detail view');
+    }
 
 
 document.addEventListener("DOMContentLoaded", function () {

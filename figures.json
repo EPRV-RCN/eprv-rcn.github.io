@@ -45,7 +45,7 @@
     "author": "Kimberly Roberts",
     "tags": ["pipeline", "calibration", "EPRV"],
     "description": "A schematic showing the calibration process for achieving cm/s precision in radial velocity measurements.",
-    "filename": "calibration_pipeline_diagram.png"
+    "filename": "pipeline.jpg"
   },
   {
     "id": 7,
@@ -53,7 +53,8 @@
     "author": "David Thompson",
     "tags": ["workshop", "community", "EPRV"],
     "description": "Highlights and key findings from the latest EPRV RCN community workshop on advancing precision in exoplanet detection.",
-    "filename": "workshop_highlights.mp4"
+    "filename": "",
+    "video_url": "https://www.youtube.com/embed/Mj19KE_HV1E?si=qUGZDBDLg1JA1YJY"
   }
 ]
 
