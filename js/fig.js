@@ -296,6 +296,24 @@ function listView(lst) {
     return m('ul', {}, l);
 }
 
+/*
+<iframe
+  id="videoPlayer"
+  width="560"
+  height="315"
+  src="{embedUrl}"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+*/ 
+
+function imageView(fig) {
+}
+
+function videoView(fig) {
+}
+
 function detailView() {
     if (model.error) {
         return m("div", model.error);
@@ -321,7 +339,9 @@ function detailView() {
     m("a.back-button", {href: '#', onclick: cb}, "← Back"),
 
     fig.filename && m("div.image-container", [
-      m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure", style: st, onclick: cb})
+      m('a', {href: `/figure-uploads/${fig.filename}`, target: '_blank'}, 
+      //m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure", style: st, onclick: cb}))
+      m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure", style: st, onclick: null}))
       //m("img", { src: `/figure-uploads/${fig.filename}`, alt: "Figure", style: st})
     ]),
 
