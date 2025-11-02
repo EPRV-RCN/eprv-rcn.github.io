@@ -237,36 +237,6 @@ function homeView() {
         current_page = 1;
 
 
-    /*
-
-    const featuredProject = getFeatured(model.data);
-
-    let projects = getUnFeatured(model.data);
-
-    projects = filterOnKeywords(projects);
-    projects = filterOnStatus(projects);
-
-    const start = PAG_MAX*(current_page - 1);
-    const end = PAG_MAX*current_page;
-
-    const paginated_projects = projects.slice(start, end);
-
-    return [
-        m('h2', {style: {'margin-top': '0px'}}, 'Water Projects'),
-        m('h3', {style: {'text-align': 'left'}}, 'Featured Project'),
-        //featuredView(featuredProject),
-        featuredProjectView(featuredProject),
-        //m('hr', {style: {'background-color': 'black', height: '2px', border: 'none'}}),
-        m('hr'),
-        keywordFilterView(),
-        statusFilterView(),
-        //mainView(projects),
-        mainView(paginated_projects),
-        paginationView(projects, current_page),
-    ]
-    */
-    //return m('h1', 'hello!');
-
     const filteredFigures = filterOnKeywords(model.data);
     const start = PAG_MAX*(current_page - 1);
     const end = PAG_MAX*current_page;
@@ -281,11 +251,9 @@ function homeView() {
         m('div', {}, figures),
         paginationView(filteredFigures, current_page),
     ];
-    //return figureView(model.data[0]);
-            
 }
 
-// generic view that turns a js list
+// generic view that converts a js list
 // into an html list.
 function listView(lst) {
     const l = [];
@@ -294,18 +262,6 @@ function listView(lst) {
     }
     return m('ul', {}, l);
 }
-
-/*
-<iframe
-  id="videoPlayer"
-  width="560"
-  height="315"
-  src="{embedUrl}"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
-</iframe>
-*/ 
 
 function imageView(fig) {
     return m("div.image-container", [
@@ -321,7 +277,6 @@ function embedView(fig) {
         width: '560',
         height: '315',
         src: `${fig.video_url}`,
-        //src: `https://www.youtube.com/embed/Mj19KE_HV1E?si=qUGZDBDLg1JA1YJY`,
         frameborder: '0',
         allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
         allowfullscreen: true
@@ -366,7 +321,7 @@ function detailView() {
         window.history.back();
     }
 
-    let vdom = m('div', 'No content');
+    let vdom = m('div', 'No content available');
 
     if ('image_file' in fig && fig.image_file) {
         vdom = imageView(fig);
@@ -378,17 +333,12 @@ function detailView() {
         vdom = mp4View(fig);
     }
 
-
-
-
     return m("div.container", [
         m('div', m("a.back-button", {href: '#', onclick: cb}, "← Back")),
         m('h3', {style: {'text-align': 'center', 'margin-bottom': '50px'}}, `${fig.title}`),
         vdom,
         //m('div', m("a.back-button", {href: '#', onclick: cb}, "← Back")),
         ]);
-
-        //return m('div', 'detail view');
     }
 
 
