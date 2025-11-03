@@ -54,6 +54,11 @@ function findById(list, id) {
 
 
 function figureView(fig) {
+    // We need a title for display.
+    if (!('title' in fig && fig.title)) {
+        fig.title = 'No Title'
+    }
+
     return m('details', {open: model.openStates[fig.id] || false, ontoggle: e => {model.openStates[fig.id] = e.target.open}}, [
                m('summary', fig.title),
                m('section', [
@@ -86,18 +91,18 @@ function incl(str1, str2) {
 function filterOnKeywords(figures) {
     function fltr(figure) {
         for (const kw of model.filter) {
-            if (incl(figure.title, kw)) 
+            if ('title' in figure && incl(figure.title, kw)) 
                 return true;
-            if (incl(figure.author, kw))
+            if ('author' in figure && incl(figure.author, kw))
                 return true;
-            if (incl(figure.description, kw))
-                return true;
-            if (incl(figure.image_file, kw))
+            if ('description ' in figure && incl(figure.description, kw))
                 return true;
 
-            for (const tag of figure.tags) {
-                if (incl(tag, kw))
-                    return true;
+            if ('tags' in figure) {
+                for (const tag of figure.tags) {
+                    if (incl(tag, kw))
+                        return true;
+                }
             }
             
         }
@@ -156,6 +161,14 @@ function keywordFilterView() {
         m('input', {type: 'text', size: 30, value: model.filterText, placeholder: 'Enter comma seprated keywords', oninput: master_cb}, null),
     ];
     return m('div#keyword-filter', {}, lst);
+}
+
+function addID(lst) {
+    const out = JSON.parse(JSON.stringify(lst));
+    for (const [index, value] of out.entries()) {
+        value.id = index + 1;
+    }
+    return out;
 }
 
 function init() {
@@ -272,11 +285,22 @@ function imageView(fig) {
 }
 
 function embedView(fig) {
+    function toEmbedUrl(url) {
+        const match = url.match(
+          /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([\w-]{11})/
+        );
+        if (!match) return null;
+        const videoId = match[1];
+        return `https://www.youtube-nocookie.com/embed/${videoId}`;
+    }
+
     const att = {
         id: 'videoPlayer',
         width: '560',
         height: '315',
-        src: `${fig.video_url}`,
+        src: `${toEmbedUrl(fig.video_url)}`,
+        //src: `${fig.video_url.replace('youtube.com', 'youtube-nocookie.com')}`,
+        //src: `https://www.youtube-nocookie.com/embed/0FEUxQHLlrw?si=9QpriMuNEdCKxehY`,
         frameborder: '0',
         allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
         allowfullscreen: true

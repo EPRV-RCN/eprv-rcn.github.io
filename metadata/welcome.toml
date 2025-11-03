@@ -1,5 +1,5 @@
 title = "Welcome to the EPRV RCN!"
 author = "John Smith"
 tags = ["welcome", "EPRV", "community"]
-description = "A banner image introducing the Extreme Precision Radial Velocity Research Coordination Network, highlighting its NASA sponsorship and collaborative goals.",
-filename = "welcome_banner.png"
+description = "A banner image introducing the Extreme Precision Radial Velocity Research Coordination Network, highlighting its NASA sponsorship and collaborative goals."
+image_file = "kittens-lg.jpg"

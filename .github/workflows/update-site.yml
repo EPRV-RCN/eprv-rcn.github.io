@@ -23,10 +23,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
 
       - name: Run combine_configs.py
-        run: python .github/scripts/combine_configs.py config/ combined.json
+        run: python .github/scripts/toml2json.py metadata/ figures.json
 
       - name: Commit and push combined.json
         env:

@@ -1,0 +1,5 @@
+title = "Precision Calibration Pipeline Overview"
+author = "Kimberly Roberts"
+tags = ["pipeline", "calibration", "EPRV"]
+description = "A schematic showing the calibration process for achieving cm/s precision in radial velocity measurements."
+mp4_file = "sample.mp4"

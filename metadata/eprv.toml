@@ -1,0 +1,5 @@
+title = "EPRV RCN Collaboration Map"
+author = "Carlos Nguyen"
+tags = ["network", "collaboration", "map"]
+description = "An interactive visualization showing the geographic distribution of participating institutions within the EPRV RCN."
+image_file = "kittens-md.jpg"
