@@ -265,8 +265,8 @@ function listView(lst) {
 
 function imageView(fig) {
     return m("div.image-container", [
-        m('div', {style: {'text-align': 'center', 'color': 'gray'}}, m('em', '(Click the image below to view raw file in a new tab)')),
         m('a', {href: `/figure-uploads/${fig.image_file}`, target: '_blank'}, 
+            m('div', {style: {'text-align': 'center'}}, m('em', 'View raw image file')),
             m("img", { src: `/figure-uploads/${fig.image_file}`, alt: "Figure"}))
     ])
 }
@@ -301,7 +301,7 @@ function mp4View(fig) {
     };
 
     return m('video', att, 
-               m('source', {src: `/figures/${fig.mp4_file}`, type: 'video/mp4'}));
+               m('source', {src: `/figure-uploads/${fig.mp4_file}`, type: 'video/mp4'}));
 }
 
 function detailView() {
