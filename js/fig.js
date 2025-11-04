@@ -280,7 +280,7 @@ function imageView(fig) {
     return m("div.image-container", [
         m('a', {href: `/figure-uploads/${fig.image_file}`, target: '_blank'}, 
             m('div', {style: {'text-align': 'center'}}, m('em', 'View raw image file')),
-            m("img", { src: `/figure-uploads/${fig.image_file}`, alt: "Figure"}))
+            m("img", { src: `/figure-uploads/${fig.image_file}`, alt: "Figure", style: {display: 'block', margin: '0 auto'}}))
     ])
 }
 
@@ -306,7 +306,7 @@ function embedView(fig) {
         allowfullscreen: true
     };
 
-    return m('iframe', att);
+    return m('div.video-container', m('iframe', att) );;
 }
 
 function mp4View(fig) {
