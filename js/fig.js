@@ -52,6 +52,23 @@ function findById(list, id) {
     return list.find(item => item.id === id);
 }
 
+function renderContent(content) {
+    if (!content) return [];
+
+    return content
+        .trim()
+        .split(/\n\s*\n/) // split paragraphs on blank lines
+        .map(paragraph =>
+            m(
+                "p",
+                paragraph.split(/\n/).reduce((acc, line, i) => {
+                    if (i > 0) acc.push(m("br"));
+                    acc.push(line);
+                    return acc;
+                }, [])
+            )
+        );
+}
 
 function figureView(fig) {
     // We need a title for display.
@@ -71,9 +88,9 @@ function figureView(fig) {
                    m('hr'),
 
                    m('h3', 'Description'),
-                   m('p', fig.description),
+                   m('div', renderContent(fig.description)),
                    m('hr'),
-                   //m('p', {}, m('a', {href: `/figure-uploads/${fig.image_file}`}, `${fig.image_file}`)),
+                   //m('p', {}, m('a', {href: `/figure-files/${fig.image_file}`}, `${fig.image_file}`)),
                    m('p', {}, m('a', {href: `#/figure/${fig.id}`}, 'View →')),
 
 
@@ -278,9 +295,9 @@ function listView(lst) {
 
 function imageView(fig) {
     return m("div.image-container", [
-        m('a', {href: `/figure-uploads/${fig.image_file}`, target: '_blank'}, 
+        m('a', {href: `/figure-files/${fig.image_file}`, target: '_blank'}, 
             m('div', {style: {'text-align': 'center'}}, m('em', 'View raw image file')),
-            m("img", { src: `/figure-uploads/${fig.image_file}`, alt: "Figure", style: {display: 'block', margin: '0 auto'}}))
+            m("img", { src: `/figure-files/${fig.image_file}`, alt: "Figure", style: {display: 'block', margin: '0 auto'}}))
     ])
 }
 
@@ -325,7 +342,7 @@ function videoView(fig) {
     };
 
     return m('video', att, 
-               m('source', {src: `/figure-uploads/${fig.video_file}`, type: 'video/mp4'}));
+               m('source', {src: `/figure-files/${fig.video_file}`, type: 'video/mp4'}));
 }
 
 function detailView() {
