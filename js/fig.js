@@ -309,7 +309,7 @@ function embedView(fig) {
     return m('div.video-container', m('iframe', att) );;
 }
 
-function mp4View(fig) {
+function videoView(fig) {
     const st = {
         width: "100%",
         height: "auto",
@@ -325,7 +325,7 @@ function mp4View(fig) {
     };
 
     return m('video', att, 
-               m('source', {src: `/figure-uploads/${fig.mp4_file}`, type: 'video/mp4'}));
+               m('source', {src: `/figure-uploads/${fig.video_file}`, type: 'video/mp4'}));
 }
 
 function detailView() {
@@ -353,8 +353,8 @@ function detailView() {
     else if ('video_url' in fig && fig.video_url) {
         vdom = embedView(fig);
     }
-    else if ('mp4_file' in fig && fig.mp4_file) {
-        vdom = mp4View(fig);
+    else if ('video_file' in fig && fig.video_file) {
+        vdom = videoView(fig);
     }
 
     return m("div.container", [
