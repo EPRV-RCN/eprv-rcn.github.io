@@ -6,7 +6,7 @@ import sys
 import tomllib
 
 
-def combine_configs(input_dir, output_file):
+def toml2json(input_dir, output_file):
     data = []
     for idx, filename in enumerate(os.listdir(input_dir)):
         if not filename.endswith('.toml'):
@@ -30,5 +30,5 @@ if __name__ == '__main__':
     if len(sys.argv) != 3:
         print('Usage: combine_configs <input_dir> <output_file>')
         sys.exit(1)
-    combine_configs(sys.argv[1], sys.argv[2])
+    toml2json(sys.argv[1], sys.argv[2])
 
