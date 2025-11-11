@@ -1,0 +1,13 @@
+title = "Welcome to the EPRV RCN!"
+author = "John Smith"
+tags = ["welcome", "EPRV", "community"]
+
+#description = "A banner image introducing the Extreme Precision Radial Velocity Research Coordination Network, highlighting its NASA sponsorship and collaborative goals."
+description = """
+A long description can be broken up into multip paragraphs by quoting with triple quotes.
+Newlines and paragraphs will be preserved.
+
+This is a new paragraph.
+"""
+
+image_file = "kittens-lg.jpg"

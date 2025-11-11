@@ -1,0 +1,5 @@
+title = "Instrument Stability Comparison"
+author = "Alicia Perez"
+tags = ["instrumentation", "stability", "calibration"]
+description = "A plot comparing long-term radial velocity stability across multiple EPRV spectrographs used in current exoplanet surveys."
+image_file = "kittens-md.jpg"

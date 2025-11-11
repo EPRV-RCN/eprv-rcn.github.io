@@ -1,0 +1,44 @@
+name: Update Combined Configs
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'config/**'
+      - '.github/scripts/**'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Run toml2json.py
+        run: python .github/scripts/toml2json.py metadata/ figures.json
+
+      - name: Commit and push combined.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add combined.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Auto-update combined.json [skip ci]"
+          git push
+
