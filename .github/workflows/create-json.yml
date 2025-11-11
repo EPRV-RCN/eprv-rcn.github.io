@@ -1,10 +1,10 @@
-name: Update Combined Configs
+name: Generate json from toml files
 
 on:
   push:
     branches: [ main ]
     paths:
-      - 'config/**'
+      - 'metadata/**'
       - '.github/scripts/**'
 
 permissions:
