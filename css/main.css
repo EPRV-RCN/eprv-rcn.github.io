@@ -60,6 +60,10 @@ hr {
   border-top: 1px solid #aaa;
 }
 
+ol {
+    padding-left: 20px;
+}
+
 ul {
     padding-left: 10px;
 }
