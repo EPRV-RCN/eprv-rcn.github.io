@@ -1,0 +1,95 @@
+<style>
+  /******************* Loader ************************/
+  .loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #555;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+  }
+  /******************* Loader ************************/
+  /* pagination */
+  .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  }
+  .pagination ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  }
+  .pagination li {
+  margin: 0 5px;
+  }
+  .pagination a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+  }
+  .pagination a.active {
+  /*background-color: #17283C;*/
+  background-color: #222;
+  color: white;
+  }
+  .pagination a:hover:not(.active) {
+  background-color: #ddd;
+  }
+  #figure-nav.pagination {
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  box-shadow: none;
+  }
+  .video-container {
+  width: 100%;              /* Fill parent width */
+  aspect-ratio: 16 / 9;     /* Maintain 16:9 ratio */
+  position: relative;
+  }
+  .video-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  }
+  /*************/
+  details {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f9f9f9;
+  }
+  summary {
+  cursor: pointer;
+  font-weight: bold;
+  }
+  summary:hover {
+  /*color: #007BFF;*/
+  color: #0077cc;
+  }
+  details[open] {
+  /*background: #eef;*/
+  border: 0px;
+  }
+  input[type="text"] {
+  height: 30px;
+  font-size: 16px;
+  padding: 10px;
+  }
+  .image-container img {
+  /*max-width: 1200px;*/
+  max-width: 100%;
+  }
+</style>
+

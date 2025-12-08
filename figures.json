@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Earth Analog Mass Detection Simulation",
+    "author": "Jane Anderson",
+    "tags": [
+      "simulation",
+      "earth_analog",
+      "mass_measurement"
+    ],
+    "description": "A simulation showing how small-amplitude radial velocity signals from Earth-like planets can be identified amid stellar noise.",
+    "image_file": "kittens-lg.jpg",
+    "id": 1
+  },
+  {
+    "title": "Precision Calibration Pipeline Overview",
+    "author": "Kimberly Roberts",
+    "tags": [
+      "pipeline",
+      "calibration",
+      "EPRV"
+    ],
+    "description": "A schematic showing the calibration process for achieving cm/s precision in radial velocity measurements.",
+    "video_file": "sample.mp4",
+    "id": 2
+  },
+  {
+    "title": "EPRV Community Workshop Highlights",
+    "author": "David Thompson",
+    "tags": [
+      "workshop",
+      "community",
+      "EPRV"
+    ],
+    "description": "Highlights and key findings from the latest EPRV RCN community workshop on advancing precision in exoplanet detection.",
+    "image_file": "kittens-lg.jpg",
+    "id": 3
+  },
+  {
+    "title": "RV Signal Extraction Demo",
+    "author": "Michael Liu",
+    "tags": [
+      "radial_velocity",
+      "data_analysis",
+      "tutorial"
+    ],
+    "description": "An animation demonstrating how precise RV signals are extracted from stellar spectra over time.",
+    "image_file": "kittens-sm.jpg",
+    "id": 4
+  },
+  {
+    "title": "Instrument Stability Comparison",
+    "author": "Alicia Perez",
+    "tags": [
+      "instrumentation",
+      "stability",
+      "calibration"
+    ],
+    "description": "A plot comparing long-term radial velocity stability across multiple EPRV spectrographs used in current exoplanet surveys.",
+    "image_file": "kittens-md.jpg",
+    "id": 5
+  },
+  {
+    "title": "EPRV RCN Collaboration Map",
+    "author": "Carlos Nguyen",
+    "tags": [
+      "network",
+      "collaboration",
+      "map"
+    ],
+    "description": "An interactive visualization showing the geographic distribution of participating institutions within the EPRV RCN.",
+    "video_url": "https://www.youtube.com/embed/B0ADKQmh-1Y",
+    "id": 6
+  },
+  {
+    "title": "Welcome to the EPRV RCN!",
+    "author": "John Smith",
+    "tags": [
+      "welcome",
+      "EPRV",
+      "community"
+    ],
+    "description": "A long description can be broken up into multip paragraphs by quoting with triple quotes.\nNewlines and paragraphs will be preserved.\n\nThis is a new paragraph.\n",
+    "image_file": "kittens-lg.jpg",
+    "id": 7
+  }
+]
