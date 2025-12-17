@@ -1,5 +1,0 @@
-title = "RV Signal Extraction Demo"
-author = "Michael Liu"
-tags = ["radial_velocity", "data_analysis", "tutorial"]
-description = "An animation demonstrating how precise RV signals are extracted from stellar spectra over time."
-image_file = "kittens-sm.jpg"
