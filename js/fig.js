@@ -1,5 +1,8 @@
-
+// ----------------------------------------------------------------
+// Pagination Max: Max number of figures/items to display per page. 
+// ----------------------------------------------------------------
 const PAG_MAX = 15;
+
 
 // Number of pages surrounding current page to display in
 // pagination navigation
