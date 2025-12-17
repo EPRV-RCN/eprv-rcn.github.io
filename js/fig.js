@@ -1,5 +1,5 @@
 
-const PAG_MAX = 5;
+const PAG_MAX = 15;
 
 // Number of pages surrounding current page to display in
 // pagination navigation
@@ -70,10 +70,61 @@ function renderContent(content) {
         );
 }
 
+function tagsView_old(fig) {
+    function cb(e) {
+        e.preventDefault();
+        const text = e.currentTarget.textContent;
+        model.filterText = text;
+        model.filter = [text];
+        m.route.set('');
+
+    }
+
+    const l = [];
+    for (const item of fig.tags) {
+        l.push(m('li', {}, m('a', {href: '#', onclick: cb}, item)));
+    }
+    return m('ul', {}, l);
+}
+
+function tagsView(fig) {
+    function cb(e) {
+        e.preventDefault();
+        const text = e.currentTarget.textContent;
+        model.filterText = text;
+        model.filter = [text];
+        m.route.set('');
+
+    }
+
+    return m("div.tags",
+        fig.tags.map((t, i) => [
+            m("a.tag", {href: "#", onclick: cb}, t),
+            i < fig.tags.length - 1 ? m("span.sep", " | ") : null
+        ])
+    );
+}
+
+
 function figureView(fig) {
     // We need a title for display.
     if (!('title' in fig && fig.title)) {
         fig.title = 'No Title'
+    }
+
+    let vdom = m('div', 'No content available');
+    let txt = 'Figure';
+
+    if ('image_file' in fig && fig.image_file) {
+        vdom = imageView(fig);
+    }
+    else if ('video_url' in fig && fig.video_url) {
+        vdom = embedView(fig);
+        txt = 'Video';
+    }
+    else if ('video_file' in fig && fig.video_file) {
+        vdom = videoView(fig);
+        txt = 'Animation';
     }
 
     return m('details', {open: model.openStates[fig.id] || false, ontoggle: e => {model.openStates[fig.id] = e.target.open}}, [
@@ -90,8 +141,16 @@ function figureView(fig) {
                    m('h3', 'Description'),
                    m('div', renderContent(fig.description)),
                    m('hr'),
-                   //m('p', {}, m('a', {href: `/figure-files/${fig.image_file}`}, `${fig.image_file}`)),
-                   m('p', {}, m('a', {href: `#/figure/${fig.id}`}, 'View →')),
+
+                   m('h3', 'Tags'),
+                   tagsView(fig),
+                   m('hr'),
+                   // m('p', {}, m('a', {href: `/figures/${fig.image_file}`}, `${fig.image_file}`)),
+                   // m('p', {}, m('a', {href: `#/figure/${fig.id}`}, 'View →')),
+
+                   // show figure here rather than linking to it.
+                   m('h3', txt),
+                   vdom,
 
 
                ]),
@@ -276,7 +335,6 @@ function homeView() {
     const figures = paginatedFigures.map(figureView);
 
     return [
-        m('h2', {style: {'text-align': 'center', 'margin-bottom': '50px'}}, 'Figures and Animations'),
         keywordFilterView(),
         m('div', {}, figures),
         paginationView(filteredFigures, current_page),
@@ -293,12 +351,49 @@ function listView(lst) {
     return m('ul', {}, l);
 }
 
+/*
 function imageView(fig) {
     return m("div.image-container", [
-        m('a', {href: `/figure-files/${fig.image_file}`, target: '_blank'}, 
+        m('a', {href: `/figures/${fig.image_file}`, target: '_blank'}, 
             m('div', {style: {'text-align': 'center'}}, m('em', 'View raw image file')),
-            m("img", { src: `/figure-files/${fig.image_file}`, alt: "Figure", style: {display: 'block', margin: '0 auto'}}))
+            m("img", { src: `/figures/${fig.image_file}`, alt: "Figure", style: {display: 'block', margin: '0 auto'}}))
     ])
+}
+*/
+function imageView(fig) {
+    return m("div.image-container", 
+        m('a', {href: `/figures/${fig.image_file}`, target: '_blank'}, 
+            [
+                m('div', {style: {'text-align': 'center'}}, m('em', 'View raw image file')),
+                m("img", { src: `/figures/${fig.image_file}`, alt: "Figure", style: {display: 'block', margin: '0 auto'}})]
+        )
+    )
+}
+
+function videoView(fig) {
+    const st = {
+        width: "100%",
+        height: "auto",
+        display: "block",
+    }
+
+    const att = {
+        autoplay: true,
+        loop: true,
+        muted: true,
+        playsinline: true,
+        style: st,
+    };
+
+    return m("div.video-container", 
+        m('a', {href: `/figures/${fig.video_file}`, target: '_blank'}, 
+            [
+                m('div', {style: {'text-align': 'center'}}, m('em', 'View raw video file')),
+                m('video', att, 
+                    m('source', {src: `/figures/${fig.video_file}`, type: 'video/mp4'})),
+            ]
+        )
+    )
 }
 
 function embedView(fig) {
@@ -326,6 +421,7 @@ function embedView(fig) {
     return m('div.video-container', m('iframe', att) );;
 }
 
+/*
 function videoView(fig) {
     const st = {
         width: "100%",
@@ -342,8 +438,9 @@ function videoView(fig) {
     };
 
     return m('video', att, 
-               m('source', {src: `/figure-files/${fig.video_file}`, type: 'video/mp4'}));
+               m('source', {src: `/figures/${fig.video_file}`, type: 'video/mp4'}));
 }
+*/
 
 function detailView() {
     if (model.error) {
