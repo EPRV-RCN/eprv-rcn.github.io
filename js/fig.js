@@ -1,5 +1,5 @@
 
-const PAG_MAX = 10;
+const PAG_MAX = 15;
 
 // Number of pages surrounding current page to display in
 // pagination navigation
