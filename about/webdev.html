@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Development</title>
+    <script src="/js/nav.js"></script>
+</head>
+<body>
+
+    <div id="navbar"></div>
+
+    <main>
+
+      <header class="banner">
+        <img src="../siteimages/RCN_banner.jpeg" alt="EPRV RCN banner image">
+       </header>
+
+      <header>
+        <h2>About</h2>
+      </header>
+
+      <section>
+          <h3>How to contribute to the RCN Website</h3>
+          <hr>
+          <p>This site follows the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" target="_blank">Gitflow workflow</a></p>
+
+          <p>
+              <strong>Branch Structure</strong> 
+              <ul>
+                  <li><em>main</em> -- Release branch from which the current, displayed website is generated</li>
+                  <li><em>develop</em> -- Development branch where updates are aggregated between releases</li>
+                  <li><em>feature_branch_name</em> - Feature branches should be forked off of develop, and should be named with a human readable intuitive name. Delete feature branches once merged into develop and work in them is complete.</li>
+              </ul>
+              <hr>
+              <strong>We recommend that developers use the following workflow:</strong> 
+              <br>
+              <br>
+              <strong>First, set up your working environment:</strong>
+              <ol>
+                  <li>Create a fork of the repository into your github account by clicking the Fork icon on the right top corner of the main github EPRV-RCN/RVdata repo page.</li>
+                  <li>Clone your fork to your local computer: <code>git clone git@github.com:YourGithubID/RVdata.git</code></li>
+                  <li>Setup a new <em>remote</em> named upstream that points to the project level repository: <code>git remote add upstream git@github.com:EPRV-RCN/RVdata.git</code></li>
+              </ol>
+
+              <br>
+              <br>
+              <strong>To add a new feature or bugfix to the website:</strong>
+              <ol>
+                  <li>Create a feature branch off of develop for your new work. Bugfix branches should prefix with <em>bugfix</em></li>
+                  <code>git checkout -b feature_branch_name</code>
+                  <li>Make your changes, commit them with a useful commit message, and push to your fork.</li>
+                  <code>git commit -m "Description of committed changes"</code>  <br>
+                  <code>git push origin feature_branch_name</code>
+                  <li>Setup a pull request from your feature branch into the project level develop branch. Use the Pull requests menu item on the top bar of github.com. 
+                      Be sure that the pull request points into the EPRV-RCN.github.io <em><strong>develop</strong></em> branch. This will trigger a review request.</li>
+                  <li>Iterate with reviewers as needed, using the pull request to capture discussion comments. Once the reviewers approve the pull request, the original 
+                      author is responsible for merging.
+              </ol>
+
+              <br>
+              <strong><span style="color: red;">If you encounter a merge conflict, ask for help. Do not proceed!</span></strong>
+
+
+          </p>
+      </section>
+
+
+
+    </main>
+
+    <footer>
+      <p>Interested in improving this page? Create a fork and make changes to this <a href="https://github.com/EPRV-RCN/eprv-rcn.github.io/blob/main/about/webdev.html" target="_blank">source file</a>, then submit a pull request!</p>
+    </footer>
+
+</body>
+</html>
