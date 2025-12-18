@@ -116,23 +116,21 @@ function figureView(fig) {
     }
 
     let vdom = m('div', 'No content available');
-    let txt = 'Figure';
 
     if ('image_file' in fig && fig.image_file) {
         vdom = imageView(fig);
     }
     else if ('video_url' in fig && fig.video_url) {
         vdom = embedView(fig);
-        txt = 'Video';
     }
     else if ('video_file' in fig && fig.video_file) {
         vdom = videoView(fig);
-        txt = 'Animation';
     }
 
     return m('details', {open: model.openStates[fig.id] || false, ontoggle: e => {model.openStates[fig.id] = e.target.open}}, [
                m('summary', fig.title),
-               m('section', [
+               m('section', {class: 'media-layout'}, [
+                   m('div', {class: 'text-content'}, [
                    m('h3', 'Author'),
                    m('p', fig.author),
                    m('hr'),
@@ -147,12 +145,12 @@ function figureView(fig) {
 
                    m('h3', 'Tags'),
                    tagsView(fig),
+                   ]),
                    m('hr'),
                    // m('p', {}, m('a', {href: `/figures/${fig.image_file}`}, `${fig.image_file}`)),
                    // m('p', {}, m('a', {href: `#/figure/${fig.id}`}, 'View →')),
 
                    // show figure here rather than linking to it.
-                   m('h3', txt),
                    vdom,
 
 
