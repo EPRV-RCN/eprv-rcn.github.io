@@ -68,6 +68,11 @@ ul {
     padding-left: 10px;
 }
 
+footer {
+    width: 100%;
+    margin: auto 0;
+}
+
 pre {
   background-color: #e6e6e6;
   background-color: #e9e9e9;
