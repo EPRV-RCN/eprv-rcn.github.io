@@ -1,0 +1,5 @@
+title = "3D HD model atmosphere"
+author = "Cis Lagae"
+tags = ["model-atmospheres", "stars", "granulation"]
+description = "A gif showing the temporal evolution of the Solar surface temperature as simulated by the STAGGER code. The simulation is of box-in-a-star type, contains no magnetic fields an encompasses roughly 0.004% of the Solar surface. Longer (or other customised) versions of this movie are available on request to cis.lagae@warwick.ac.uk."
+image_file = "3DHD_atmosphere_CisLagae.gif"
