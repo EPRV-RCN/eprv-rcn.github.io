@@ -172,7 +172,7 @@ function filterOnKeywords(figures) {
                 return true;
             if ('author' in figure && incl(figure.author, kw))
                 return true;
-            if ('description ' in figure && incl(figure.description, kw))
+            if ('description' in figure && incl(figure.description, kw))
                 return true;
 
             if ('tags' in figure) {
