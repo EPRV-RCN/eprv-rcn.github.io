@@ -1,5 +1,18 @@
 [
   {
+    "title": "EPRV Timeline",
+    "author": "Jennifer Burt",
+    "tags": [
+      "precision",
+      "semi-amplitude",
+      "planets",
+      "timeline"
+    ],
+    "description": "A figure showing the progression of radial velocity precision over time and the semi-amplitudes of the exoplanets discovered each year. RV-only detections are depicted as squares, while planets detected first in transit and then followed up with RV facilities are depicted as circles. Figure 3 from Burt, Dumusque & Halverson 2026 : https://ui.adsabs.harvard.edu/abs/2025arXiv251101954B/abstract",
+    "image_file": "EPRV_Timeline.png",
+    "id": 1
+  },
+  {
     "title": "Precision Calibration Pipeline Overview",
     "author": "Kimberly Roberts",
     "tags": [
@@ -31,8 +44,8 @@
       "stars",
       "granulation"
     ],
-    "description": "A gif showing the temporal evolution of the Solar surface temperature as simulated by the STAGGER code. The simulation is of box-in-a-star type, contains no magnetic fields an encompasses roughly 0.004% of the Solar surface. Longer (or other customised) versions of this movie are available on request to cis.lagae@warwick.ac.uk.",
-    "image_file": "3DHD_atmosphere_CisLagae.gif",
+    "description": "An animation showing the temporal evolution of the Solar surface temperature as simulated by the STAGGER code. The simulation is of box-in-a-star type, contains no magnetic fields an encompasses roughly 0.004% of the Solar surface. Longer (or other customised) versions of this movie are available on request to cis.lagae@warwick.ac.uk.",
+    "video_file": "3DHD_atmosphere_CisLagae.mp4",
     "id": 4
   },
   {
