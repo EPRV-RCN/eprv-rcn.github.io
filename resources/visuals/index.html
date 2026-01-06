@@ -27,12 +27,17 @@
               <hr>
               <p>To add a new file via github:</p>
               <ol>
-                <li>Add an image file with a <em>unique file name</em> (png, jpg, gif, webP, AVIF, SVG) or a small video file (.mp4) to the figures directory.
-                    Note: Video files larger than 5 MB should be uploaded to Youtube for hosting. The youtube video will then be embedded on the page.</li>
-                <li>Upload a corresponding .toml config file, again with a unique file name, to the <a href="https://github.com/EPRV-RCN/eprv-rcn.github.io/tree/main/metadata" target="_blank">metadata directory</a>. Click <a href="template.toml" download>here</a> to download a template config file.</li>
+                <li>Add an image file (png, jpg, gif, webP, AVIF, or SVG -- note that PDFs will not work) or a small video file (.mp4) to the figures directory. Ensure that it has a unique file name.
+                <li>Upload a corresponding .toml config file, again with a unique file name, to the <a href="https://github.com/EPRV-RCN/eprv-rcn.github.io/tree/main/metadata" target="_blank">metadata directory</a>. Click <a href="file_template.toml" download>here</a> to download a template config file for adding an image or .mp4 file or <a href="youtube_template.toml" download>here</a> for template config file to embed a youtube video.</li>
               </ol>
+              </p>
 
-              <p>  </p>
+              <p>Important Notes: 
+                <ol>
+                    <li>Video files larger than 5 MB should be uploaded to Youtube for hosting. The youtube video will then be embedded on the page.</li>
+                    <li>Please convert animated gifs to the mp4 format before uploading, to save space and bandwidth. The following ffmpeg command should do the job: <code>ffmpeg -i input.gif -movflags faststart -pix_fmt yuv420p output.mp4</code> </li>
+                </ol>
+              </p>
 
               <p>If you'd like to contribute a figure, animation, etc without using github you can instead submit it using this 
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqiK1hx8Moo17b3NRtTajFYnAvy4_2vMDGjdN7wHBkbKtFAg/viewform?usp=sharing&ouid=108496092621486427030" target="_blank">RCN Google Form</a>. 
