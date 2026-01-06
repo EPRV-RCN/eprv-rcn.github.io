@@ -3,10 +3,13 @@
 Please complete this checklist before requesting review.  
 PRs may be delayed if items are unchecked.
 
-- [ ] The “source file” link at the bottom of the page works
-- [ ] I edited the correct source Markdown file
-- [ ] All links work
 - [ ] This PR makes one focused change
+- [ ] I edited the correct source Markdown file
+- [ ] I checked that any new links lead to the correct page/website/etc
+
+If adding a new page:
+- [ ] I checked that the “Interested in improving this page?" source file link at the bottom of the page works and points to the correct page
+- [ ] If appropriate, I added the page to the navbar.html file so it shows up in the navigation bar
 
 ## Summary
 
