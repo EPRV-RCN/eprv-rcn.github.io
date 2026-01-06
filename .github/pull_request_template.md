@@ -3,8 +3,9 @@
 Please complete this checklist before requesting review.  
 PRs may be delayed if items are unchecked.
 
+Always Required:
 - [ ] This PR makes one focused change
-- [ ] I edited the correct source Markdown file
+- [ ] I edited the correct source file
 - [ ] I checked that any new links lead to the correct page/website/etc
 
 If adding a new page:
