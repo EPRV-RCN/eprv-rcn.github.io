@@ -2,11 +2,31 @@
   fetch('/navbar.html')
     .then(response => response.text())
     .then(data => {
-      document.getElementById('navbar').innerHTML = data;
+      const navbar = document.getElementById('navbar');
+      if (!navbar) return;
+      navbar.innerHTML = data;
 
       adjustBodyPadding();
       setupMobileSubmenu();
     });
+
+  // Load shared announcements into any page that provides a slot
+  function loadAnnouncements() {
+    const announcementsSlot = document.getElementById('announcements');
+    if (!announcementsSlot) return;
+
+    fetch('/announcements.html')
+      .then(response => response.text())
+      .then(data => {
+        announcementsSlot.innerHTML = data;
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadAnnouncements);
+  } else {
+    loadAnnouncements();
+  }
 
   function adjustBodyPadding() {
     const nav = document.getElementById('mainNav');

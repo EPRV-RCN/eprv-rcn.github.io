@@ -30,6 +30,93 @@ section {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
+.banner img {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.page-content {
+  min-width: 0;
+}
+
+.page-content > header h2 {
+  margin-top: 0.5rem;
+}
+
+.page-content > section:first-of-type,
+.page-layout > #announcements {
+  margin-top: 0;
+}
+
+#announcements {
+  position: sticky;
+  top: 80px;
+}
+
+.announcements-panel {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #ffcc00;
+}
+
+.announcements-panel h3 {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+  font-size: 1.15rem;
+}
+
+.announcements-panel hr {
+  margin: 0.75rem 0 1rem;
+}
+
+.announcement-item {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid #eee;
+}
+
+.announcement-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.announcement-item h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.announcement-item p {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.announcement-item p:last-child {
+  margin-bottom: 0;
+}
+
+.announcement-meta {
+  color: #777;
+  font-size: 0.8rem !important;
+  font-weight: 600;
+  text-transform: none;
+  margin-bottom: 0.35rem !important;
+}
+
 .section-banner {
   width: 100%;
   height: 200px;
@@ -82,6 +169,21 @@ pre {
 }
 
 /* Responsive Layout */
+@media (max-width: 900px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #announcements {
+    position: static;
+    order: -1;
+  }
+
+  .page-content {
+    order: 1;
+  }
+}
+
 @media (max-width: 768px) {
   nav {
     position: static;
@@ -104,6 +206,14 @@ pre {
 
   section {
     padding: 1.5rem;
+  }
+
+  .banner img {
+    max-height: 140px;
+  }
+
+  .announcements-panel {
+    padding: 1.25rem;
   }
 }
 pre {
