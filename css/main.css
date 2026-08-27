@@ -117,6 +117,88 @@ section {
   margin-bottom: 0.35rem !important;
 }
 
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile-grid--events {
+  grid-template-columns: 1fr;
+}
+
+a.tile,
+.tile {
+  display: block;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-left: 3px solid #ddd;
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+a.tile:hover {
+  text-decoration: none;
+  background: #fff;
+  border-color: #cfe6f5;
+  border-left-color: #0077cc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+a.tile:hover .tile-title {
+  text-decoration: underline;
+}
+
+.tile-title {
+  display: block;
+  margin: 0 0 0.35rem;
+  color: #0077cc;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+div.tile .tile-title {
+  color: #444;
+}
+
+.tile p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.45;
+}
+
+.tile-meta {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #777;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.section-intro {
+  margin-bottom: 1.25rem;
+}
+
+.section-intro:last-child {
+  margin-bottom: 0;
+}
+
+.contribute-list {
+  padding-left: 1.25rem;
+}
+
+.contribute-list li {
+  margin-bottom: 0.5rem;
+}
+
 .section-banner {
   width: 100%;
   height: 200px;
