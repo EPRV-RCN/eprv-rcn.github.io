@@ -22,31 +22,112 @@
       </header>
 
         <section>
-            <h3>Table of Current EPRV Instrumentation, Their Basic Properties, and Availability</h3>
+            <p class="section-intro">
+                Resources to help the EPRV community prepare competitive observing proposals and identify which instruments
+                are available to apply for. Contributions are welcome — email eprv-rcn.leads [at] jpl.nasa.gov or reach out on Slack
+                if you have materials to add.
+            </p>
+        </section>
+
+        <section>
+            <h3>Proposal Writing</h3>
+            <hr>
+            <p class="section-intro">
+                On September 10, 2026, the RCN hosted a digital workshop on writing more compelling EPRV observing proposals,
+                with speakers from NOIRLab, ESO, NEID, ESPRESSO, MAROON-X, and more.
+                The <a href="https://www.youtube.com/watch?v=ZDryzKX0laA" target="_blank" rel="noopener">workshop recording is available on YouTube</a>,
+                and slides from selected segments are linked below. See also the
+                <a href="/events/observing-proposal-workshop/">workshop event page</a> for the original agenda.
+            </p>
+
+            <h4>General guidelines</h4>
+            <p>
+                Best practices for framing science cases, choosing instruments and observing strategies, and presenting
+                a clear technical case to TACs. Community-contributed notes and links will be collected here over time.
+            </p>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=ZDryzKX0laA" target="_blank" rel="noopener">RCN workshop recording: How to Write Compelling Observing Proposals</a> (September 10, 2026)</li>
+                <li><a href="https://sites.google.com/psu.edu/psu-het-proposals/hints-tips" target="_blank" rel="noopener">Guide to Writing Strong Proposals for the HET</a> (Jason Wright & Mike Eracleous, May 2024) </li>
+            </ul>
+            <br>
+
+            <h4>Figures and captions</h4>
+            <p>
+                Guidance on designing clear proposal figures and writing captions that support your science case.
+            </p>
+            <ul>
+                <li><a href="FiguresAndCaptionsSlides.pdf" target="_blank" rel="noopener">Figures and Captions slides from the RCN workshop</a> (PDF)</li>
+                <li><a href="Proposal_Figure_Checklist.pdf" target="_blank" rel="noopener">Proposal Figure Checklist</a> — points to consider when designing and finalizing figures (PDF)</li>
+            </ul>
+            <br>
+
+            <h4>Simulating EPRV data</h4>
+            <p>
+                Tools and examples for generating synthetic RV datasets to support feasibility arguments and survey design
+                in proposals.
+            </p>
+            <ul>
+                <li><a href="AlejandroDataSimulationSlides.pdf" target="_blank" rel="noopener">Alejandro's data simulation tutorial slides from the RCN workshop</a> (PDF)</li>
+                <li><a href="https://github.com/oscaribv/pyaneti/blob/master/pyaneti_extras/synthetic_k2100.ipynb" target="_blank" rel="noopener">Tutorial notebook on using Oscar Barragan's Pyaneti to simulate EPRV data</a> (link)</li>
+            </ul>
+            <br>
+            <p>
+                Additional notebooks or scripts that generate synthetic RV data with public code/ packages are welcome.
+                If you are willing to share an example (or record a short walkthrough for the RCN YouTube channel), contact the RCN leads.
+            </p>
+            <br>    
+
+            <h4>Exposure time calculators</h4>
+            <p>
+                Links and notes on finding and using exposure time calculators (ETCs) for individual EPRV instruments.
+                <ul>
+                    <li><a href="https://neid-etc.tuc.noirlab.edu/calc_shell/calculate_rv" target="_blank" rel="noopener">NEID ETC Website</a> & <a href="https://bitbucket.org/erik_timmermann_noao/neid-etc/branch/seeing_grids" target="_blank" rel="noopener">BitBucket repo</a> </li>
+                    <li><a href="https://github.com/California-Planet-Search/KPF-etc" target="_blank" rel="noopener">KPF ETC github repo</a> </li>
+                    <li><a href="https://www.eso.org/observing/etc/bin/gen/form?INS.NAME=ESPRESSO+INS.MODE=spectro" target="_blank" rel="noopener">ESPRESSO ETC Website</a> </li>
+                    <li><a href="https://etc.eso.org/harps" target="_blank" rel="noopener">HARPS ETC Website</a> </li>
+                    <li><a href="https://etc.eso.org/nirps" target="_blank" rel="noopener">NIRPS ETC Website</a> </li>
+                    <li><a href="https://carmenes-etc.lsw.uni-heidelberg.de/" target="_blank" rel="noopener">CARMENES ETC Website</a> </li>
+                </ul>
+            </p>
+            <p><em>Contributions needed:</em> if you maintain or regularly use an instrument ETC, please share the link and a short usage note with the RCN leads so we can list it here.</p>
+            <br>
+
+            <h4>Examples of successful proposals</h4>
+            <p>
+                PDFs of previously accepted observing proposals (shared with the authors' permission) to illustrate what
+                competitive proposals can look like across different TACs.
+            </p>
+            <p><em>Coming soon:</em> if you have an accepted proposal you are willing to share with the community, please contact the RCN leads and we will coordinate posting it here.</p>
+        </section>
+
+        <section>
+            <h3>EPRV Instruments and Availability</h3>
             <hr>
 
             <p>
-                This table is a best-effort resource maintained by the exoplanet community. Any RCN member is welcome to leave comments on the page suggesting updates using 
-                <a href="https://docs.google.com/spreadsheets/d/119Ppl0uIP3jeVq_0edP9jef_t0pmrAgN9ySvPQXkQa8/edit?gid=0#gid=0" target="_blank"> this link</a> to help keep the listings 
-                up to date and capture recent changes to instrumentation or availability!
+                This table is a best-effort resource maintained by the exoplanet community listing current EPRV instrumentation,
+                basic properties, and availability — useful when deciding which facilities you can apply to.
+                Any RCN member is welcome to leave comments suggesting updates using
+                <a href="https://docs.google.com/spreadsheets/d/119Ppl0uIP3jeVq_0edP9jef_t0pmrAgN9ySvPQXkQa8/edit?gid=0#gid=0" target="_blank" rel="noopener">this link</a>
+                to help keep the listings current.
             </p>
 
             <div class="embed-sheet">
-            <iframe 
-                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQbUbv7wQ55Lk1P6IVdN6MipKEAIUDwArxm2m2ut7GBQtDnPnekXzuOF8RdAusJnFQ2D2ZXkJOUmaBQ/pubhtml?gid=0&single=true" 
+            <iframe
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQbUbv7wQ55Lk1P6IVdN6MipKEAIUDwArxm2m2ut7GBQtDnPnekXzuOF8RdAusJnFQ2D2ZXkJOUmaBQ/pubhtml?gid=0&single=true"
                 title="EPRV instrumentation availability spreadsheet"
                 loading="lazy"
-                frameborder="0" 
+                frameborder="0"
                 scrolling="yes">
             </iframe>
             </div>
-            
+
         </section>
 
     </main>
 
     <footer>
-        <p>Interested in improving this page? Create a fork and make changes to this <a href="https://github.com/EPRV-RCN/eprv-rcn.github.io/blob/main/resources/observing/index.html" target="_blank">source file</a>, then submit a pull request!</p>
+        <p>Interested in improving this page? Create a fork and make changes to this <a href="https://github.com/EPRV-RCN/eprv-rcn.github.io/blob/main/resources/observing/index.html" target="_blank" rel="noopener">source file</a>, then submit a pull request!</p>
     </footer>
 
 </body>
